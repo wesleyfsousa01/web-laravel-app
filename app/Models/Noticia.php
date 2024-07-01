@@ -18,7 +18,6 @@ class Noticia extends Model
         'descricao',
         'url',
     ];
-<<<<<<< HEAD
 
     public function storeArquivo($arquivo) {
         if($arquivo){
@@ -27,6 +26,4 @@ class Noticia extends Model
             $this->save();
         }
     }
-=======
->>>>>>> c81212fc53098976254ecd2c8fa6859198e30ba1
 }
