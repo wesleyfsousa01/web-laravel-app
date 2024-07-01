@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.container-img-header {
+    margin: auto;
+}
+
+.container-img-header
+img {
+    max-height: 450px;
+    width: 100%;
+}
