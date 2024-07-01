@@ -13,14 +13,14 @@ class NoticiaController extends Controller
     public function index()
     {
         $noticias = Noticia::all();
-        
+
         return view('dashboard', ['noticias' => $noticias]);
     }
 
     public function home()
     {
         $noticias = Noticia::all();
-        
+
         return view('home', ['noticias' => $noticias]);
     }
 
@@ -38,28 +38,31 @@ class NoticiaController extends Controller
     public function store(Request $request)
     {
         $regras = [
-            'titulo' => ['required', 'string', 'max:255'],
-            'descricao' => ['required', 'string'],
-            'arquivo' => ['required', 'file', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
+            'titulo' => 'required|string|min:3|max:255',
+            'descricao' => 'required|string|min:10',
+            'arquivo' => 'file|mimes:jpeg,png,jpg,pdf|max:2048',
         ];
-        
+
 
         $request->validate($regras);
-        dd($request);
         $noticia = Noticia::create([
             'titulo' => $request->titulo,
             'descricao' => $request->descricao,
         ]);
-        dd($noticia);
-        $noticia->storeArquivo($request->file('arquivo'));
-        return redirect()->route('dashboard');
+
+        if($request->hasFile('arquivo')){
+            $noticia->storeArquivo($request->file('arquivo'));
+        }
+
+
+        return redirect()->route('home');
     }
 
     /**
      * Display the specified resource.
      */
     public function show(Noticia $noticia)
-    {   
+    {
         return route('noticias.show', ['noticia' => $noticia]);
     }
 
@@ -69,7 +72,7 @@ class NoticiaController extends Controller
     public function edit(Noticia $noticia)
     {
         return view('noticias.edit', compact('noticia'));
-    }   
+    }
 
     /**
      * Update the specified resource in storage.
@@ -88,7 +91,7 @@ class NoticiaController extends Controller
         $noticia->descricao = $request->descricao;
 
         if($request->hasFile('arquivo')){
-            $noticia->storeArquivo($request->file('arquivo'));   
+            $noticia->storeArquivo($request->file('arquivo'));
         }
 
         $noticia->save();
