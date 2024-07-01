@@ -1,11 +1,21 @@
 <?php
 
+<<<<<<< HEAD
+use App\Http\Controllers\NoticiaController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
+
+// Route::get('/', function () {
+//     return view('home');
+// });
+=======
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
 });
+>>>>>>> c81212fc53098976254ecd2c8fa6859198e30ba1
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -17,4 +27,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+<<<<<<< HEAD
+//Route::resource('noticias', NoticiaController::class);
+Route::get('/', [NoticiaController::class, 'home' ])->name('home');
+Route::get('/dashboard', [NoticiaController::class, 'index']);
+Route::get('/noticias/create', [NoticiaController::class, 'create']);
+Route::post('/noticias/store', [NoticiaController::class, 'store'])->name('noticias.store');
+
+=======
+>>>>>>> c81212fc53098976254ecd2c8fa6859198e30ba1
 require __DIR__.'/auth.php';
