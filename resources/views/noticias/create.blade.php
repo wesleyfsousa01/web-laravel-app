@@ -8,7 +8,7 @@
     <div class="container">
     <h1>Criar noticia</h1>
 
-    <form action="{{route('noticias.store')}}" method="post">
+    <form action="{{route('noticias.store')}}" method="post"  enctype="multipart/form-data">
         @csrf
         <div>
             <input type="text" class="form-control" name="titulo" placeholder="Titulo">

@@ -10,9 +10,11 @@ class NoticiaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $noticias = Noticia::all();
+        // $noticias = Noticia::all();
+        $filters = $request->only(['title', 'description']);
+        $noticias = Noticia::filter($filters)->paginate(5)->withQueryString();
         
         return view('dashboard', ['noticias' => $noticias]);
     }
@@ -40,18 +42,16 @@ class NoticiaController extends Controller
         $regras = [
             'titulo' => ['required', 'string', 'max:255'],
             'descricao' => ['required', 'string'],
-            'arquivo' => ['required', 'file', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
+            'file' =>  'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
-        
 
         $request->validate($regras);
-        dd($request);
         $noticia = Noticia::create([
             'titulo' => $request->titulo,
             'descricao' => $request->descricao,
         ]);
-        dd($noticia);
-        $noticia->storeArquivo($request->file('arquivo'));
+
+        $noticia->storeArquivo($request->file('file'));
         return redirect()->route('dashboard');
     }
 
@@ -77,9 +77,9 @@ class NoticiaController extends Controller
     public function update(Request $request, Noticia $noticia)
     {
         $regras = [
-            'titulo' => 'required|string|max:255',
-            'descricao' => 'required|string',
-            'arquivo' => 'required|file|image|mimes:jpeg,png,gif,|max:2048'
+            'titulo' => ['required', 'string', 'max:255'],
+            'descricao' => ['required', 'string'],
+            'file' =>  'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
 
         $request->validate($regras);
@@ -99,8 +99,9 @@ class NoticiaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Noticia $noticia)
+    public function destroy($id)
     {
+        $noticia = Noticia::find($id);
         $noticia->delete();
 
         return redirect()->route('dashboard');
