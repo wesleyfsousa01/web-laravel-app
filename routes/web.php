@@ -1,5 +1,6 @@
 <?php
 
+<<<<<<< HEAD
 use App\Http\Controllers\NoticiaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -28,4 +29,6 @@ Route::put('/noticias/update/{noticia}', [NoticiaController::class, 'update'])->
 Route::delete('/noticias/{id}', [NoticiaController::class, 'destroy'])->name('noticias.destroy');
 
 
+=======
+>>>>>>> c81212fc53098976254ecd2c8fa6859198e30ba1
 require __DIR__.'/auth.php';

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Noticia;
 use Illuminate\Http\Request;
 
 class NoticiaController extends Controller
@@ -15,14 +14,14 @@ class NoticiaController extends Controller
         // $noticias = Noticia::all();
         $filters = $request->only(['title', 'description']);
         $noticias = Noticia::filter($filters)->paginate(5)->withQueryString();
-        
+
         return view('dashboard', ['noticias' => $noticias]);
     }
 
     public function home()
     {
         $noticias = Noticia::all();
-        
+
         return view('home', ['noticias' => $noticias]);
     }
 
@@ -31,7 +30,7 @@ class NoticiaController extends Controller
      */
     public function create()
     {
-        return view('noticias.create');
+        //
     }
 
     /**
@@ -58,18 +57,18 @@ class NoticiaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Noticia $noticia)
-    {   
-        return route('noticias.show', ['noticia' => $noticia]);
+    public function show(string $id)
+    {
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Noticia $noticia)
+    public function edit(string $id)
     {
-        return view('noticias.edit', compact('noticia'));
-    }   
+        //
+    }
 
     /**
      * Update the specified resource in storage.
@@ -88,7 +87,7 @@ class NoticiaController extends Controller
         $noticia->descricao = $request->descricao;
 
         if($request->hasFile('arquivo')){
-            $noticia->storeArquivo($request->file('arquivo'));   
+            $noticia->storeArquivo($request->file('arquivo'));
         }
 
         $noticia->save();
