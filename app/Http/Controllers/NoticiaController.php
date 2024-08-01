@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Noticia;
 use Illuminate\Http\Request;
 
 class NoticiaController extends Controller

@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-=======
->>>>>>> c81212fc53098976254ecd2c8fa6859198e30ba1
 
 class Noticia extends Model
 {
