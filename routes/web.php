@@ -20,7 +20,7 @@ Route::middleware('auth')->group(function () {
 
 // Route::resource('noticias', NoticiaController::class);
 Route::get('/', [NoticiaController::class, 'home' ])->name('home');
-Route::get('/teste', [NoticiaController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [NoticiaController::class, 'index'])->name('dashboard');
 Route::get('/noticias/create', [NoticiaController::class, 'create'])->name('noticias.create');
 Route::post('/noticias/store', [NoticiaController::class, 'store'])->name('noticias.store');
 Route::get('/noticias/edit/{noticia}', [NoticiaController::class, 'edit'])->name('noticias.edit');

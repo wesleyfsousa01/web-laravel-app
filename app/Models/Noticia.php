@@ -18,13 +18,16 @@ class Noticia extends Model
         'url',
     ];
 
-    public function scopeFilter(Builder $query, array $filters){
-        if($title = $filters['title'] ?? false){
-            $query->query('titulo', 'like', '%' .$title. '%');
+    public function scopeFilter(Builder $query, array $filters)
+    {
+        //Filtrar pelo titulo
+        if(!empty($title = $filters['title'])){
+            $query->where('titulo', 'like', '%' .$filters['title']. '%');
         }
 
-        if($descricao = $filters['descricao'] ?? false){
-            $query->query('descricao', 'like', '%' .$descricao. '%');
+        //Filtrar pela descrição
+        if(!empty($descricao = $filters['description'])){
+            $query->where('descricao', 'like', '%' .$filters['description']. '%');
         }
     }
 
