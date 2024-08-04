@@ -85,7 +85,7 @@
                 </div>
 
                 @else
-                    <p>Não existem noticias cadastradas</p>
+                    <p>Nenhum registro foi encontrado</p>
                 @endif
         </div>
 
