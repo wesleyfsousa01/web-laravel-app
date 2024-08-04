@@ -31,7 +31,7 @@ class NoticiaController extends Controller
      */
     public function create()
     {
-        //
+        return view('noticias.create');
     }
 
     /**
@@ -41,34 +41,34 @@ class NoticiaController extends Controller
     {
         $regras = [
             'titulo' => ['required', 'string', 'max:255'],
-            'descricao' => ['required', 'string'],
-            'file' =>  'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'descricao' => ['required', 'string', 'max:255'],
+            'arquivo' =>  'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
-
         $request->validate($regras);
+
         $noticia = Noticia::create([
             'titulo' => $request->titulo,
             'descricao' => $request->descricao,
         ]);
 
-        $noticia->storeArquivo($request->file('file'));
+        $noticia->storeArquivo($request->file('arquivo'));
         return redirect()->route('dashboard');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Noticia $noticia)
     {
-        //
+        return view('noticias.show', ['noticia' => $noticia]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Noticia $noticia)
     {
-        //
+        return view('noticias.edit', ['noticia' => $noticia]);
     }
 
     /**
@@ -79,7 +79,7 @@ class NoticiaController extends Controller
         $regras = [
             'titulo' => ['required', 'string', 'max:255'],
             'descricao' => ['required', 'string'],
-            'file' =>  'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'arquivo' =>  'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
 
         $request->validate($regras);

@@ -1,3 +1,3 @@
 <div class="container-img-header">
-    <img src="{{asset('img/img-banner.png')}}" alt="">
+    <img class="img-fluid" src="{{asset('img/img-banner.png')}}" alt="">
 </div>

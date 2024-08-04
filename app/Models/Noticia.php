@@ -21,12 +21,12 @@ class Noticia extends Model
     public function scopeFilter(Builder $query, array $filters)
     {
         //Filtrar pelo titulo
-        if(!empty($title = $filters['title'])){
+        if(!empty($filters['title'])){
             $query->where('titulo', 'like', '%' .$filters['title']. '%');
         }
 
         //Filtrar pela descrição
-        if(!empty($descricao = $filters['description'])){
+        if(!empty($filters['description'])){
             $query->where('descricao', 'like', '%' .$filters['description']. '%');
         }
     }
@@ -35,7 +35,7 @@ class Noticia extends Model
         if($arquivo){
             $path = $arquivo->store('arquivos', 'public');
             $this->url = Storage::url($path);
-            $this->save();
+            $this->save(); 
         }
     }
 }
