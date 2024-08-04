@@ -42,10 +42,7 @@
         </header>
         <main>
             @yield('content')
-<<<<<<< HEAD
              {{ $slot }}
-=======
->>>>>>> c81212fc53098976254ecd2c8fa6859198e30ba1
         </main>
         <footer>
             @include('partials.footer')
