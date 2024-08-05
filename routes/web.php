@@ -18,6 +18,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/search', [NoticiaController::class, 'search'])->name('search');
+
 // Route::resource('noticias', NoticiaController::class);
 Route::get('/', [NoticiaController::class, 'home' ])->name('home');
 Route::get('/dashboard', [NoticiaController::class, 'index'])->name('dashboard');

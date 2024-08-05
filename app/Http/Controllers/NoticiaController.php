@@ -19,6 +19,14 @@ class NoticiaController extends Controller
         return view('dashboard', ['noticias' => $noticias]);
     }
 
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $noticias = Noticia::search($query)->get();
+
+        return view('search-results', ['noticias' => $noticias]);
+    }
+
     public function home()
     {
         $noticias = Noticia::all();

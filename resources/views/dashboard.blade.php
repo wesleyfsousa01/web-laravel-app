@@ -23,6 +23,14 @@
                 <a href="{{route('noticias.create')}}" class="btn btn-success ms-5">Criar</a>
             </div>
 
+
+            <form action="{{ route('search') }}" method="GET">
+                <div class="d-flex">
+                    <input  type="text" class="form-control" name="query" placeholder="pesquisar...">
+                    <button type="submit" class="btn btn-primary ms-2">Buscar</button>
+                </div>
+            </form>
+
             <form method="GET" action="{{ route('dashboard') }}">
                 <div>
                     <label>Titulo</label>

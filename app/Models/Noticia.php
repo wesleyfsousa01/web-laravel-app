@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Scout\Searchable;
 
 class Noticia extends Model
 {
     use HasFactory;
+    use Searchable;
 
     protected $fillable = [
         'titulo',
@@ -38,4 +40,13 @@ class Noticia extends Model
             $this->save(); 
         }
     }
+
+   public function toSearchableArray()
+   {
+    return [
+        'id'=>$this->id,
+        'titulo'=>$this->titulo,
+        'descricao'=>$this->descricao
+    ];
+   }
 }
