@@ -27,11 +27,14 @@ class NoticiaController extends Controller
         return view('search-results', ['noticias' => $noticias]);
     }
 
-    public function home()
+    public function home(Request $request)
     {
-        $noticias = Noticia::all();
+        $filters = $request->only(['title', 'description']);
+        $noticias = Noticia::filter($filters)->paginate(10)->withQueryString();
 
-        return view('home', ['noticias' => $noticias]);
+        $ultimasNoticias = Noticia::orderBy('created_at', 'desc')->take(2)->get();
+
+        return view('home', ['noticias' => $noticias, 'ultimasNoticias' => $ultimasNoticias]);
     }
 
     /**

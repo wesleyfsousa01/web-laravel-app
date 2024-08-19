@@ -26,7 +26,7 @@
     </div>
 
     <div class="mt-4 text-center">
-        <a href="{{ route('dashboard') }}" class="btn btn-primary">Voltar</a>
+        <a href="{{ url()->previous() }}" class="btn btn-primary">Voltar</a>
     </div>
 
 </x-app-layout>
